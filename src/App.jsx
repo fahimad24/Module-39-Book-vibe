@@ -1,13 +1,16 @@
 import "./App.css";
+import NavBar from "./navbar/NavBar";
+import { Outlet } from "react-router";
 
 function App() {
   return (
     <>
-      <div>
-        <h1 className="text-4xl text-pink-700 text-center" s>
-          Welcome to Book Vibe
-        </h1>
-      </div>
+      <NavBar></NavBar>
+      <section>
+        <div className="container mx-auto py-6">
+          <Outlet></Outlet>
+        </div>
+      </section>
     </>
   );
 }
