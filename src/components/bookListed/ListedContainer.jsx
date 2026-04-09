@@ -7,6 +7,7 @@ const ListedContainer = ({
   wishlistBooks,
   setAllBooks,
   allBooks,
+  shortBy,
 }) => {
   const handleReadBooks = () => {
     setIsActive(true);
@@ -17,6 +18,17 @@ const ListedContainer = ({
     setIsActive(false);
     setAllBooks(wishlistBooks);
   };
+
+  const sortedBooks = [...allBooks].sort((a, b) => {
+    if (shortBy === "Rating") {
+      return b.rating - a.rating; // Sort by rating for read books
+    } else if (shortBy === "Number of Pages") {
+      return b.totalPages - a.totalPages; // Sort by number of pages for read books
+    } else if (shortBy === "Year of Publishing") {
+      return b.yearOfPublishing - a.yearOfPublishing; // Sort by year of publishing for wishlist books
+    }
+    return 0; // No sorting if "Short By" is selected
+  });
 
   return (
     <div>
@@ -43,7 +55,9 @@ const ListedContainer = ({
             No books to display.
           </p>
         ) : (
-          allBooks.map((book) => <ListedCard key={book.bookId} book={book} />)
+          sortedBooks.map((book) => (
+            <ListedCard key={book.bookId} book={book} />
+          ))
         )}
       </div>
     </div>

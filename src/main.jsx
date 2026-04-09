@@ -9,6 +9,7 @@ import Home from "./page/home/Home.jsx";
 import BookDetails from "./page/home/BookDetails.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import ListedBook from "./page/home/ListedBook.jsx";
+import ReadPage from "./page/home/ReadPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "read-books",
-        Component: () => <h1>Books to Read</h1>,
+        Component: ReadPage,
       },
       {
         path: "/book/:bookId",
