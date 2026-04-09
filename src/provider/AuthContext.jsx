@@ -3,6 +3,10 @@ import { ContextApi } from "./contextApi";
 
 const AuthContext = ({ children }) => {
   const [books, setBooks] = useState([]);
+  const [readBooks, setReadBooks] = useState([]);
+  const [wishlistBooks, setWishlistBooks] = useState([]);
+
+  // Fetch book data from the JSON file when the component mounts
   useEffect(() => {
     async function getBookList() {
       try {
@@ -21,6 +25,10 @@ const AuthContext = ({ children }) => {
 
   const value = {
     books,
+    readBooks,
+    wishlistBooks,
+    setReadBooks,
+    setWishlistBooks,
   };
   return <ContextApi.Provider value={value}>{children}</ContextApi.Provider>;
 };

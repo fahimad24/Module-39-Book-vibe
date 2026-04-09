@@ -1,13 +1,47 @@
 import { useContext } from "react";
 import { useParams } from "react-router";
+import { toast } from "react-toastify";
 import { ContextApi } from "../../provider/contextApi";
 
 const BookDetails = () => {
   const bookId = useParams().bookId;
-  console.log("Book ID from URL:", bookId); // Debugging line
-  const books = useContext(ContextApi).books;
-  console.log("Books from context:", books); // Debugging line
+  const { books, readBooks, wishlistBooks, setReadBooks, setWishlistBooks } =
+    useContext(ContextApi);
   const book = books.find((b) => b.bookId === parseInt(bookId));
+
+  // Handlers for "Read" and "Wishlist" buttons
+  const handleRead = () => {
+    if (readBooks.some((b) => b.bookId === book.bookId)) {
+      toast.error("You have already read this book.");
+      return;
+    }
+
+    if (wishlistBooks.some((b) => b.bookId === book.bookId)) {
+      const wishlistUpdated = wishlistBooks.filter(
+        (b) => b.bookId !== book.bookId,
+      );
+      setWishlistBooks(wishlistUpdated);
+    }
+    setReadBooks((prev) => [...prev, book]);
+    toast.success("Book added to your read list!", {});
+    console.log("Read Books:", readBooks);
+  };
+
+  // Handler for "Wishlist" button
+  const handleWishlist = () => {
+    if (readBooks.some((b) => b.bookId === book.bookId)) {
+      toast.error("You have already read this book. Cannot add to wishlist.");
+      return;
+    }
+    if (wishlistBooks.some((b) => b.bookId === book.bookId)) {
+      toast.error("This book is already in your wishlist.");
+      return;
+    }
+
+    setWishlistBooks((prev) => [...prev, book]);
+    toast.success("Book added to your wishlist!");
+    console.log("Wishlist Books:", wishlistBooks);
+  };
 
   if (!book) {
     return <div>Book not found</div>;
@@ -57,8 +91,15 @@ const BookDetails = () => {
           </p>
         </div>
         <div className=" space-x-5">
-          <button class="btn btn-outline">Read</button>
-          <button class="btn btn-accent text-white">Wishlist</button>
+          <button className="btn btn-outline" onClick={handleRead}>
+            Read
+          </button>
+          <button
+            className="btn btn-accent text-white"
+            onClick={handleWishlist}
+          >
+            Wishlist
+          </button>
         </div>
       </div>
     </section>

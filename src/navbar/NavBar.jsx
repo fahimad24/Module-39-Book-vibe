@@ -1,11 +1,13 @@
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 
 const NavBar = () => {
   return (
     <nav className="work-sans">
       <div className="container mx-auto flex justify-between items-center py-6">
         <div>
-          <h1 className="text-3xl font-bold">Book Vibe</h1>
+          <Link to="/">
+            <h1 className="text-3xl font-bold">Book Vibe</h1>
+          </Link>
         </div>
         <div className="space-x-5">
           <NavLink

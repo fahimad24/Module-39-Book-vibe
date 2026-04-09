@@ -7,6 +7,9 @@ import { RouterProvider } from "react-router/dom";
 import App from "./App.jsx";
 import Home from "./page/home/Home.jsx";
 import BookDetails from "./page/home/BookDetails.jsx";
+import { ToastContainer, Bounce } from "react-toastify";
+import ListedBook from "./page/home/ListedBook.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +18,7 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       {
         path: "listed-books",
-        Component: () => <h1>Listed Books</h1>,
+        Component: ListedBook,
       },
       {
         path: "read-books",
@@ -33,6 +36,20 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContext>
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        limit={5}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </AuthContext>
   </StrictMode>,
 );

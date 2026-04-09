@@ -6,7 +6,7 @@ const Booklists = () => {
   const { books } = useContext(ContextApi);
 
   return (
-    <section className="py-16">
+    <section id="books" className="py-16">
       <div className="text-center pb-10">
         <h1 className="text-5xl font-bold mb-6 playfair">Book Lists</h1>
         <p className="text-lg text-gray-600 playfair">

@@ -9,9 +9,11 @@ const Hero = () => {
         <h1 className="text-6xl leading-24 font-bold mb-16 playfair">
           Books to freshen up your bookshelf
         </h1>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded">
-          Explore Books
-        </button>
+        <a href="#books">
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded">
+            Explore Books
+          </button>
+        </a>
       </div>
       <div className="flex-1 flex justify-end items-center py-12">
         <img className="w-80" src={books[0]?.image} alt={books[0]?.title} />
